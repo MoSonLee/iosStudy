@@ -16,6 +16,7 @@
 | **1회** | 화면 전환 구현 | 완료 |      |        | 2022.03.15 |
 | **2회** | LEDboard app 구현| 완료 |      |        | 2022.03.15 |
 | **3회** | Calculator app 구현| 완료 |      |        | 2022.03.16 |
+| **3회** | TodoList app 구현| 진행중 |      |        | 2022.03.17 |
 
 
 ### 화면 전환 어플 실험
@@ -47,6 +48,17 @@
 
 ![Simulator Screen Recording - iPhone 11 - 2022-03-16 at 00 58 16](https://user-images.githubusercontent.com/77050826/158419339-77adea39-9f7c-4821-b8c1-d8b600355f4d.gif)</br>
 
+### TodoListApp 구현
+   ➡️ 예전에 구현한 TodolistApp과 약간 다른 방식으로 구현함.</br>
+   ➡️ tableView를 사용하여 구현했다.</br>
+   ➡️ tableView를 하면 당연히 따라 나오는 dataSource(데이터를 받아 뷰를 그려주는 역할),delegate(테이블 뷰의 동작과 외관을 담당)로 tableView를 구현했다.</br>
+   ➡️ 저번 todoListApp과 다르게 재정렬 컨트롤러를 구현했다.</br>
+   ➡️ 할 일을 선택했을 때 checkmark가 나오게 구현했다.</br>
+   ➡️ userDefaults를 이용하여 앱을 재실행해도 데이터가 유지되게 구현했다.(저번 todoList에선 Json을 사용했다.)</br>
+   ➡️ userDefaults: 앱이 실행되는 동안 기본 저장소에 접근해 데이터를 기록하고 가져오는 역할을 하는 interface</br>
+   
+**📲 실행 화면 </br>**
+![Simulator Screen Recording - iPhone 11 - 2022-03-17 at 01 07 22](https://user-images.githubusercontent.com/77050826/158634903-5ad74360-4509-42f5-9f6d-b8edbd4a9060.gif)</br>
 
 
 
