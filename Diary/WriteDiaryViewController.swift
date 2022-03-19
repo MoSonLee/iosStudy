@@ -7,8 +7,11 @@
 
 import UIKit
 
-class WriteDiaryViewController: UIViewController {
+protocol WriteDiaryViewDelegate: AnyObject {
+    func didSelectRegister(diary: Diary)
+}
 
+class WriteDiaryViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
@@ -17,11 +20,15 @@ class WriteDiaryViewController: UIViewController {
     
     private let datePicker = UIDatePicker()
     private var diaryDate: Date?
+    weak var delegate: WriteDiaryViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureContentsTextView()
         self.configureDatePicker()
+        self.configureInputField()
+        self.confirmButton.isEnabled = false
+        
     }
     
     private func configureContentsTextView() {
@@ -38,7 +45,20 @@ class WriteDiaryViewController: UIViewController {
         self.datePicker.locale = Locale(identifier: "ko_KR")
         self.dateTextField.inputView = self.datePicker
     }
+    
+    private func configureInputField() {
+        self.contentsTextView.delegate = self
+        self.titleTextField.addTarget(self, action: #selector(titleTextFileDidChange(_:)), for: .editingChanged)
+        self.dateTextField.addTarget(self, action: #selector(dateTextFieldDidChange(_:)), for: .editingChanged)
+    }
+    
     @IBAction func tapConfirmButton(_ sender: UIBarButtonItem) {
+        guard let title = self.titleTextField.text else { return }
+        guard let contents = self.contentsTextView.text else { return }
+        guard let date = self.diaryDate else { return }
+        let diary = Diary(title: title, contents: contents, date: date, isStar: false)
+        self.delegate?.didSelectRegister(diary: diary)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func datePickerValueDidChange(_ datePicker: UIDatePicker) {
@@ -47,6 +67,29 @@ class WriteDiaryViewController: UIViewController {
         formatter.locale = Locale(identifier: "ko_KR")
         self.diaryDate = datePicker.date
         self.dateTextField.text = formatter.string(from: datePicker.date)
+        self.dateTextField.sendActions(for: .editingChanged)
     }
     
+    @objc private func titleTextFileDidChange(_ textField: UITextField){
+        self.validateInputField()
+    }
+    
+    @objc private func dateTextFieldDidChange(_ textField: UITextField){
+        self.validateInputField()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    private func validateInputField() {
+        self.confirmButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true) &&
+        !(self.dateTextField.text?.isEmpty ?? true) && !self.contentsTextView.text.isEmpty
+    }
+}
+
+extension WriteDiaryViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.validateInputField()
+    }
 }
