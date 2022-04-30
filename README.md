@@ -58,7 +58,7 @@
    ➡️ userDefaults: 앱이 실행되는 동안 기본 저장소에 접근해 데이터를 기록하고 가져오는 역할을 하는 interface</br>
    
 **📲 실행 화면 </br>**
-![Simulator Screen Recording - iPhone 11 - 2022-03-17 at 01 07 22](https://user-images.githubusercontent.com/77050826/158634903-5ad74360-4509-42f5-9f6d-b8edbd4a9060.gif)</br>
+![Simulator Screen Recording - iPhone 11 - 2022-03-17 at 01 07 22](https://user-images.githubusercontent.com/77050826/158634903-5ad74360-4509-42f5-9f6d-b8edbd4a9060.gif)</br></br>
 
 
 
