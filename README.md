@@ -68,9 +68,11 @@
 ```
   - Init : 초기화
   - Add : 파일 추가
+  - Feat: 기능 구현
   - Remove : 기능, 파일 삭제
   - Update : 기능, 디자인, 파일 업데이트
   - Fix : 버그 수정
+  - Refactor: code refactor
 ```
 
 <br></br>
